@@ -6,6 +6,7 @@ import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
@@ -24,6 +25,7 @@ import com.fammeo.app.R;
 import com.fammeo.app.activity.SettingEdit;
 import com.fammeo.app.app.App;
 import com.fammeo.app.common.DataGlobal;
+import com.fammeo.app.fragment.VewProfileFragment;
 import com.fammeo.app.model.CommonModel;
 import com.fammeo.app.model.EmailModel;
 import com.fammeo.app.util.CustomAuthRequest;
@@ -33,6 +35,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -88,10 +91,17 @@ public class SocialLink extends AppCompatActivity {
                 String getTwitter = edt_twiter.getText().toString();
                 String getInstagram = edt_instagram.getText().toString();
 
+                String fbPattern = "(?:(?:http|https):\\/\\/)?(?:www.)?facebook.com\\/(?:(?:\\w)*#!\\/)?(?:pages\\/)?(?:[?\\w\\-]*\\/)?(?:profile.php\\?id=(?=\\d.*))?([\\w\\-]*)?";
+                String instaPattern = "/(?:(?:http|https):\\/\\/)?(?:www.)?(?:instagram.com|instagr.am)\\/([A-Za-z0-9-_\\.]+)/g";
+                String linkdinPatter = "/^https:\\/\\/[a-z]{2,3}\\.linkedin\\.com\\/.*$/g";
+                String twitterPattern = "/http(?:s)?:\\/\\/(?:www\\.)?twitter\\.com\\/([a-zA-Z0-9_]+)/g";
+                //getLinkdin.matches(linkdinPatter)
+
                 if(getLinkdin.contains("linkedin.com") || getLinkdin.equals("")){
                         CommonModel cm = new CommonModel();
                         cm.soc_N = "linkedin";
-                        cm.soc_V = edt_linkIn.getText().toString();
+                        byte[] data = edt_linkIn.getText().toString().getBytes(StandardCharsets.UTF_8);
+                        cm.soc_V = Base64.encodeToString(data, Base64.DEFAULT);
                         socLink.add(cm);
                         lflage  = true;
                 }else {
@@ -103,7 +113,8 @@ public class SocialLink extends AppCompatActivity {
                 if(getFacebook.contains("facebook.com") || getFacebook.equals("")){
                     CommonModel cm = new CommonModel();
                     cm.soc_N = "facebook";
-                    cm.soc_V = edt_facebook.getText().toString();
+                    byte[] data = edt_facebook.getText().toString().getBytes(StandardCharsets.UTF_8);
+                    cm.soc_V = Base64.encodeToString(data, Base64.DEFAULT);
                     socLink.add(cm);
                     fflage  = true;
                 }else {
@@ -112,10 +123,11 @@ public class SocialLink extends AppCompatActivity {
                     fflage  = false;
                 }
 
-                if(getTwitter.contains("twitter.com") || getTwitter.equals("")){
+                if(getTwitter.matches("twitter.com") || getTwitter.equals("")){
                     CommonModel cm = new CommonModel();
                     cm.soc_N = "twitter";
-                    cm.soc_V = edt_twiter.getText().toString();
+                    byte[] data = edt_twiter.getText().toString().getBytes(StandardCharsets.UTF_8);
+                    cm.soc_V = Base64.encodeToString(data, Base64.DEFAULT);
                     socLink.add(cm);
                     tflage = true;
                 }else {
@@ -124,10 +136,11 @@ public class SocialLink extends AppCompatActivity {
                     tflage  = false;
                 }
 
-                if(getInstagram.contains("instagram.com") || getInstagram.equals("")){
+                if(getInstagram.matches("instagram.com") || getInstagram.equals("")){
                     CommonModel cm = new CommonModel();
                     cm.soc_N = "instagram";
-                    cm.soc_V = edt_instagram.getText().toString();
+                    byte[] data = edt_instagram.getText().toString().getBytes(StandardCharsets.UTF_8);
+                    cm.soc_V = Base64.encodeToString(data, Base64.DEFAULT);
                     socLink.add(cm);
                     iflage = true;
                 }else {
@@ -169,7 +182,7 @@ public class SocialLink extends AppCompatActivity {
                                     String msgType = object.getString("MessageType");
                                     if (msgType.equalsIgnoreCase("success")) ;
                                     toastIconSuccess();
-                                    Intent intent = new Intent(getApplicationContext(), SettingEdit.class);
+                                    Intent intent = new Intent(getApplicationContext(), VewProfileFragment.class);
                                     startActivity(intent);
 
                                 } catch (JSONException e) {
@@ -198,9 +211,14 @@ public class SocialLink extends AppCompatActivity {
                     for (int i = 0; i < socLink.size(); i++) {
                         JSONObject fielsObj = new JSONObject();
 
-                        fielsObj.put("N", socLink.get(i).soc_N);
-                        fielsObj.put("V", socLink.get(i).soc_V);
-
+                        if(socLink.get(i).soc_V.equals(""))
+                        {
+                            Log.e("TEST","Null Value :"+socLink.get(i).soc_V);
+                        }else {
+                            Log.e("TEST","Get Data Value Data :"+socLink.get(i).soc_V);
+                            fielsObj.put("N", socLink.get(i).soc_N);
+                            fielsObj.put("V", socLink.get(i).soc_V);
+                        }
                         jsonArray.put(fielsObj);
                     }
 

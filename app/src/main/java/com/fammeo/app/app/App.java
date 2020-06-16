@@ -969,6 +969,14 @@ public class App extends Application implements Constants{
         return mUserJ.FN;
     }
 
+    public String getPhone() {
+
+        return mUserJ.PPh;
+    }
+    public String getPhoneCode() {
+
+        return mUserJ.PPhC;
+    }
 
     public String getName() {
 

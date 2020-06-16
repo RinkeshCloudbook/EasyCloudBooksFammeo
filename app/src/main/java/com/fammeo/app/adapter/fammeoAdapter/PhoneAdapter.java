@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.fammeo.app.R;
 import com.fammeo.app.activity.EditActivity.EditPhone;
 import com.fammeo.app.activity.SettingEdit;
+import com.fammeo.app.app.App;
 import com.fammeo.app.fragment.FammeoFragment.AboutFragment;
 import com.fammeo.app.fragment.VewProfileFragment;
 import com.fammeo.app.model.CommonModel;
@@ -51,8 +52,13 @@ public class PhoneAdapter extends RecyclerView.Adapter<PhoneAdapter.ViewHolder> 
         holder.edt_phone.setText(phoneList.get(i).phNumber);
         if(img == false){
             holder.img_edt_phone.setVisibility(View.VISIBLE);
-            if(i == 0){
+            Log.e("TEST","Phone no :"+App.getInstance().getPhone());
+            Log.e("TEST","Code no :"+App.getInstance().getPhoneCode());
+            if(App.getInstance().getPhone().equalsIgnoreCase(phoneList.get(i).phNumber)){
                 holder.img_edt_phone.setVisibility(View.GONE);
+            }
+            if(i == phoneList.size() - 1){
+                holder.line_view.setVisibility(View.GONE);
             }
             holder.img_edt_phone.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -94,12 +100,14 @@ public class PhoneAdapter extends RecyclerView.Adapter<PhoneAdapter.ViewHolder> 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView edt_type,edt_phone,edt_cCode;
         ImageButton img_edt_phone;
+        View line_view;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             edt_cCode = itemView.findViewById(R.id.edt_cCode);
             edt_type = itemView.findViewById(R.id.edt_type);
             edt_phone = itemView.findViewById(R.id.edt_phone);
             img_edt_phone = itemView.findViewById(R.id.img_edt_phone);
+            line_view = itemView.findViewById(R.id.line_view);
         }
     }
     public void getShowImage(boolean getimg){

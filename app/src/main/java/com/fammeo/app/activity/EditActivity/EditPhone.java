@@ -112,7 +112,7 @@ public class EditPhone extends AppCompatActivity {
                                         JSONObject object = new JSONObject(strResponse);
                                         String msgType = object.getString("MessageType");
                                         if (msgType.equalsIgnoreCase("success")) {
-                                            toastIconSuccess("phone");
+                                            toastIconSuccess();
                                             Intent intent = new Intent(getApplicationContext(), VewProfileFragment.class);
                                             startActivity(intent);
                                             finish();
@@ -165,23 +165,15 @@ public class EditPhone extends AppCompatActivity {
                 }
             };
         }
-    private void toastIconSuccess(String msgText) {
+    private void toastIconSuccess() {
         Toast toast = new Toast(getApplicationContext());
         toast.setDuration(Toast.LENGTH_LONG);
 
         //inflate view
         View custom_view = getLayoutInflater().inflate(R.layout.toast_success_text, null);
-        if (msgText.equalsIgnoreCase("Language")) {
-            ((TextView) custom_view.findViewById(R.id.message)).setText("Language(s) Saved Successfully!");
-        } else if (msgText.equalsIgnoreCase("email")) {
-            ((TextView) custom_view.findViewById(R.id.message)).setText("Email(s) Saved Successfully!");
-        } else if (msgText.equalsIgnoreCase("address")) {
-            ((TextView) custom_view.findViewById(R.id.message)).setText("Address(s) Saved Successfully!");
-        } else if (msgText.equalsIgnoreCase("phone")) {
+
             ((TextView) custom_view.findViewById(R.id.message)).setText("Phone(s) Saved Successfully!");
-        }else if (msgText.equalsIgnoreCase("about")) {
-            ((TextView) custom_view.findViewById(R.id.message)).setText("About(s) Saved Successfully!");
-        }
+
 
         ((ImageView) custom_view.findViewById(R.id.icon)).setImageResource(R.drawable.ic_done);
         ((CardView) custom_view.findViewById(R.id.parent_view)).setCardBackgroundColor(getResources().getColor(R.color.green_500));

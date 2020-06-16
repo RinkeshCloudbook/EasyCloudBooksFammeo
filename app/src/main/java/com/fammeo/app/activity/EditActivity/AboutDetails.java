@@ -27,6 +27,7 @@ import com.android.volley.VolleyError;
 import com.fammeo.app.R;
 import com.fammeo.app.activity.SettingEdit;
 import com.fammeo.app.app.App;
+import com.fammeo.app.fragment.VewProfileFragment;
 import com.fammeo.app.util.CustomAuthRequest;
 
 import org.json.JSONArray;
@@ -129,7 +130,7 @@ public class AboutDetails extends AppCompatActivity {
                                         String msgType = object.getString("MessageType");
                                         if (msgType.equalsIgnoreCase("success")){
                                             toastIconSuccess("about");
-                                            Intent intent = new Intent(getApplicationContext(), SettingEdit.class);
+                                            Intent intent = new Intent(getApplicationContext(), VewProfileFragment.class);
                                             startActivity(intent);
                                         }
                                     } catch (JSONException e) {

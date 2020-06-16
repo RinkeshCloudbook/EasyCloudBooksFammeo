@@ -84,7 +84,7 @@
             android:background="@drawable/imagebutton_themleft_bg"
             android:clickable="true"
             android:tint="@color/grey_3"
-            android:src="@drawable/linkedin"
+            android:src="@drawable/ic_linkedin_24x"
             />
         <EditText
             android:id="@+id/edt_linkIn"
@@ -94,7 +94,7 @@
             android:layout_height="@dimen/spacing_xmlarge"
             android:minHeight="@dimen/spacing_xmlarge"
             android:inputType="text"
-            android:hint="Enter linkin link"
+            android:hint="Enter linkdin link"
             android:paddingLeft="@dimen/spacing_middle"
             android:paddingRight="@dimen/spacing_middle"
             android:layout_weight="1"/>
@@ -113,7 +113,7 @@
             android:background="@drawable/imagebutton_themleft_bg"
             android:clickable="true"
             android:tint="@color/grey_3"
-            android:src="@drawable/ic_facebook"
+            android:src="@drawable/ic_facebook_24x"
             />
         <EditText
             android:id="@+id/edt_facebook"
@@ -145,7 +145,7 @@
                 android:background="@drawable/imagebutton_themleft_bg"
                 android:clickable="true"
                 android:tint="@color/grey_3"
-                android:src="@drawable/ic_twitter"
+                android:src="@drawable/ic_twitter_24x"
                 />
             <EditText
                 android:id="@+id/edt_twiter"
@@ -177,7 +177,7 @@
                 android:background="@drawable/imagebutton_themleft_bg"
                 android:clickable="true"
                 android:tint="@color/grey_3"
-                android:src="@drawable/ic_instagram"
+                android:src="@drawable/ic_instagram_24x"
                 />
             <EditText
                 android:id="@+id/edt_instagram"

@@ -61,7 +61,9 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
 
         if(img == false){
             holder.img_edt_address.setVisibility(View.VISIBLE);
-
+            if(i == mAddressList.size() - 1){
+                holder.line_view.setVisibility(View.GONE);
+            }
             holder.img_edt_address.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -107,11 +109,13 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
     public class ViewHolder extends RecyclerView.ViewHolder{
         TextView txt_addstype,txt_address;
         ImageButton img_edt_address;
+        View line_view;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             txt_addstype = itemView.findViewById(R.id.txt_addstype);
             txt_address = itemView.findViewById(R.id.txt_address);
             img_edt_address = itemView.findViewById(R.id.img_edt_address);
+            line_view = itemView.findViewById(R.id.line_view);
 
         }
     }

@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Handler;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +24,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -38,6 +40,13 @@ import com.android.volley.VolleyError;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.fammeo.app.R;
+import com.fammeo.app.activity.EditActivity.AboutDetails;
+import com.fammeo.app.activity.EditActivity.EditAddress;
+import com.fammeo.app.activity.EditActivity.EditHobbies;
+import com.fammeo.app.activity.EditActivity.EditLanguage;
+import com.fammeo.app.activity.EditActivity.EditPhone;
+import com.fammeo.app.activity.EditActivity.Skills;
+import com.fammeo.app.activity.EditActivity.SocialLink;
 import com.fammeo.app.activity.EditEmail;
 import com.fammeo.app.adapter.AddressAdapter;
 import com.fammeo.app.adapter.LanuageSettingAdapter;
@@ -61,6 +70,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.io.Serializable;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -121,8 +132,23 @@ public class AboutFragment extends Fragment {
         mView = inflater.inflate(R.layout.fragment_about, container, false);
         pbHeaderProgress = mView.findViewById(R.id.pbHeaderProgress);
         recycler_view_email = mView.findViewById(R.id.recycler_view_email);
+        recycler_view_address = mView.findViewById(R.id.recycler_view_address);
+        recycler_view_phone = mView.findViewById(R.id.recycler_view_phone);
+        recycler_view_lang = mView.findViewById(R.id.recycler_view_lang);
+        recycler_view_hb = mView.findViewById(R.id.recycler_view_hb);
+        recycler_view_sk = mView.findViewById(R.id.recycler_view_sk);
+        txt_title = mView.findViewById(R.id.txt_title);
+        txt_dec = mView.findViewById(R.id.txt_dec);
+        txt_link = mView.findViewById(R.id.txt_link);
 
         setRecleyViewManager(recycler_view_email);
+        setRecleyViewManager(recycler_view_address);
+        setRecleyViewManager(recycler_view_phone);
+
+        setRecleyGrideViewManager(recycler_view_lang);
+        setRecleyGrideViewManager(recycler_view_hb);
+        setRecleyGrideViewManager(recycler_view_sk);
+
         sp = getActivity().getSharedPreferences("uId", MODE_PRIVATE);
         userId = sp.getString("u", "");
         String un = sp.getString("un", "");
@@ -130,6 +156,78 @@ public class AboutFragment extends Fragment {
         if (userId.equals("") || userId.length() > 0) {
             userId = App.getInstance().getUserId();
         }
+
+
+
+        ((ImageView) mView.findViewById(R.id.img_addEmail)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), EditEmail.class);
+                startActivity(intent);
+            }
+        });
+        ((ImageView) mView.findViewById(R.id.img_btn_socLink)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), SocialLink.class);
+                intent.putExtra("field", (Serializable) getFieldList);
+                startActivity(intent);
+            }
+        });
+
+        ((ImageView) mView.findViewById(R.id.img_edt_address)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), EditAddress.class);
+                startActivity(intent);
+            }
+        });
+
+        ((ImageView) mView.findViewById(R.id.img_btn_phone)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), EditPhone.class);
+                startActivity(intent);
+            }
+        });
+
+        ((ImageView) mView.findViewById(R.id.imgbt_lang)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //showAboutCustomDialog();
+                ArrayList<String> LangList = new ArrayList<String>();
+                Intent intent = new Intent(getActivity(), EditLanguage.class);
+                intent.putExtra("list", (Serializable) profileLangList);
+                startActivity(intent);
+            }
+        });
+        ((ImageView) mView.findViewById(R.id.img_edit_hobbies)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), EditHobbies.class);
+                intent.putExtra("Hlist", (Serializable) hobbyList);
+                startActivity(intent);
+            }
+        });
+        ((ImageView) mView.findViewById(R.id.img_edit_skills)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), Skills.class);
+                intent.putExtra("Slist", (Serializable) skillList);
+                startActivity(intent);
+            }
+        });
+        ((ImageView) mView.findViewById(R.id.img_btn_about)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //showAboutCustomDialog();
+                Intent intent = new Intent(getActivity(), AboutDetails.class);
+                intent.putExtra("T",getTitle);
+                intent.putExtra("D",getDec);
+                intent.putExtra("L",getLink);
+                startActivity(intent);
+            }
+        });
 
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
@@ -139,15 +237,9 @@ public class AboutFragment extends Fragment {
             }
         },300);
 
-        ((ImageView) mView.findViewById(R.id.img_addEmail)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), EditEmail.class);
-                startActivity(intent);
-            }
-        });
         return mView;
     }
+
 
     private void getAboutData() {
         pbHeaderProgress.setVisibility(View.VISIBLE);
@@ -170,7 +262,7 @@ public class AboutFragment extends Fragment {
                                         if (msgType.equalsIgnoreCase("success")) ;
 
                                         JSONObject obj = object.getJSONObject("obj");
-
+/*-------------------------------------------Email List-------------------------------------------------------------------*/
                                         JSONArray arrEs = obj.getJSONArray("Es");
                                         if(arrEs.length() == 0){
                                             //((TextView) mView.findViewById(R.id.txt_emailContent)).setVisibility(View.VISIBLE);
@@ -190,6 +282,174 @@ public class AboutFragment extends Fragment {
                                         }
                                         emailadapter = new EmailListAdapter(AboutFragment.this,getContext(), emailList);
                                         recycler_view_email.setAdapter(emailadapter);
+/*-------------------------------------------Email List-------------------------------------------------------------------*/
+                                        JSONArray arrfields = obj.getJSONArray("Fs");
+                                        Log.e("TEST","Get Soc Lenght :"+arrfields.length());
+                                        if(arrfields.length() == 0){
+                                            ((TextView) mView.findViewById(R.id.txt_socContent)).setVisibility(View.VISIBLE);
+                                            ((TextView) mView.findViewById(R.id.txt_socContent)).setText("No Social links to show");
+                                        }
+                                        for (int k = 0; k < arrfields.length(); k++) {
+                                            JSONObject fieldObj = arrfields.getJSONObject(k);
+                                            CommonModel cm = new CommonModel();
+                                            cm.soc_N = fieldObj.getString("N");
+                                            //cm.soc_V = fieldObj.getString("V");
+                                            byte[] data1 = Base64.decode(fieldObj.getString("V"), Base64.DEFAULT);
+                                            cm.soc_V = new String(data1, StandardCharsets.UTF_8);
+                                            getFieldList.add(cm);
+
+                                            if(cm.soc_N.equalsIgnoreCase("facebook")) {
+                                                if(cm.soc_V.equalsIgnoreCase("")){
+                                                    ((FloatingActionButton) mView.findViewById(R.id.flt_fb)).setVisibility(View.GONE);
+                                                }else
+                                                    ((FloatingActionButton) mView.findViewById(R.id.flt_fb)).setVisibility(View.VISIBLE);
+                                            }
+                                            if(cm.soc_N.equalsIgnoreCase("twitter")) {
+                                                if(cm.soc_V.equalsIgnoreCase("")){
+                                                    ((FloatingActionButton) mView.findViewById(R.id.flt_twitter)).setVisibility(View.GONE);
+                                                }else
+                                                    ((FloatingActionButton) mView.findViewById(R.id.flt_twitter)).setVisibility(View.VISIBLE);
+                                            }
+                                            if(cm.soc_N.equalsIgnoreCase("linkedin")) {
+                                                if(cm.soc_V.equalsIgnoreCase("")){
+                                                    ((FloatingActionButton) mView.findViewById(R.id.flt_linkdin)).setVisibility(View.GONE);
+                                                }else
+                                                    ((FloatingActionButton) mView.findViewById(R.id.flt_linkdin)).setVisibility(View.VISIBLE);
+                                            }
+                                            if(cm.soc_N.equalsIgnoreCase("instagram")) {
+                                                if(cm.soc_V.equalsIgnoreCase("")){
+                                                    ((FloatingActionButton) mView.findViewById(R.id.flt_instagram)).setVisibility(View.GONE);
+                                                }else
+                                                    ((FloatingActionButton) mView.findViewById(R.id.flt_instagram)).setVisibility(View.VISIBLE);
+                                            }
+                                        }
+/*-------------------------------------------Complete Email List-------------------------------------------------------------------*/
+/*-------------------------------------------Address List-------------------------------------------------------------------*/
+                                        mAddressList.clear();
+                                        JSONArray arrAdds = obj.getJSONArray("Adds");
+                                        if(arrAdds.length() == 0){
+                                            ((TextView) mView.findViewById(R.id.txt_addContent)).setVisibility(View.VISIBLE);
+                                            ((TextView) mView.findViewById(R.id.txt_addContent)).setText("No Address to show");
+                                        }
+                                        for (int j = 0; j < arrAdds.length(); j++) {
+                                            JSONObject addsObj = arrAdds.getJSONObject(j);
+                                            String fullAddress = addsObj.getString("C") + addsObj.getString("S") + addsObj.getString("CR");
+                                            CommonModel am = new CommonModel();
+
+                                            am.cType = addsObj.getString("T");
+                                            am.cAddress = addsObj.getString("L1");
+                                            am.cN = addsObj.getString("C");
+                                            am.cState = addsObj.getString("S");
+                                            am.cCountry = addsObj.getString("CR");
+                                            am.addsId = addsObj.getString("Id");
+                                            am.fullAddress = fullAddress;
+
+                                            mAddressList.add(am);
+                                        }
+                                        addsAdapter = new AddressAdapter(AboutFragment.this,getContext(), mAddressList);
+                                        recycler_view_address.setAdapter(addsAdapter);
+
+/*-------------------------------------------Complete Address List-------------------------------------------------------------------*/
+/*-------------------------------------------Phone List-------------------------------------------------------------------*/
+                                        phoneList.clear();
+                                        JSONArray phoneAdds = obj.getJSONArray("PHs");
+                                        phoneLenght = phoneAdds.length();
+                                        if(phoneAdds.length() == 0){
+                                            ((TextView) mView.findViewById(R.id.txt_phoneContent)).setVisibility(View.VISIBLE);
+                                            ((TextView) mView.findViewById(R.id.txt_phoneContent)).setText("No Phone numbers to show");
+                                        }
+                                        for (int k = 0; k < phoneAdds.length(); k++) {
+                                            JSONObject phoneObj = phoneAdds.getJSONObject(k);
+                                            CommonModel am = new CommonModel();
+                                            am.phNumber = phoneObj.getString("Ph");
+                                            am.phcType = phoneObj.getString("T");
+                                            am.phcCode = phoneObj.getString("CC");
+                                            am.phId = phoneObj.getString("Id");
+                                            phoneList.add(am);
+                                        }
+                                    phoneAdapter = new PhoneAdapter(AboutFragment.this,getContext(), phoneList);
+                                    recycler_view_phone.setAdapter(phoneAdapter);
+/*-------------------------------------------Complete phone List-------------------------------------------------------------------*/
+/*-------------------------------------------Language List-------------------------------------------------------------------*/
+                                        lanList.clear();
+                                        JSONArray arr = obj.getJSONArray("Ls");
+                                        profileLangList = new ArrayList<>();
+                                        // LinearLayout lLayout = (LinearLayout) findViewById(R.id.rel_lang);
+                                        // lLayout.removeAllViews();
+                                        for (int i = 0; i < arr.length(); i++) {
+                                            JSONObject arrObj = arr.getJSONObject(i);
+                                            CommonModel cm = new CommonModel();
+                                            cm.lId = arrObj.getString("Id");
+                                            cm.lName = arrObj.getString("N");
+                                            profileLangList.add(cm);
+                                            String getname = cm.lName;
+                                        }
+                                    LanuageSettingAdapter listAdapter = new LanuageSettingAdapter(AboutFragment.this,getContext(), profileLangList);
+                                    recycler_view_lang.setAdapter(listAdapter);
+                                        //rowTextView.setText(getname);
+
+/*-------------------------------------------Complete Language List-------------------------------------------------------------------*/
+/*------------------------------------------- Hobbies List-------------------------------------------------------------------*/
+
+                                        JSONArray arrHobbies = obj.getJSONArray("Hs");
+                                        if(arrHobbies.length() == 0){
+                                            ((TextView) mView.findViewById(R.id.txt_hbContent)).setVisibility(View.VISIBLE);
+                                            ((TextView) mView.findViewById(R.id.txt_hbContent)).setText("No Hobby to show");
+                                        }
+                                        for (int k = 0; k < arrHobbies.length(); k++) {
+
+                                            JSONObject arrObj = arrHobbies.getJSONObject(k);
+                                            CommonModel cm = new CommonModel();
+                                            cm.lId = arrObj.getString("Id");
+                                            cm.lName = arrObj.getString("N");
+                                            hobbyList.add(cm);
+                                        }
+
+                                    HobbyAdapterSetting adpeter = new HobbyAdapterSetting(AboutFragment.this, getContext(), hobbyList);
+                                    recycler_view_hb.setAdapter(adpeter);
+
+/*-------------------------------------------Complete Hobbies List-------------------------------------------------------------------*/
+/*-------------------------------------------Skills List-------------------------------------------------------------------*/
+
+                                        arrSetting = obj.getJSONArray("Ss");
+                                        JSONArray arrSkill = obj.getJSONArray("Sks");
+                                        if(arrSkill.length() == 0){
+                                            ((TextView) mView.findViewById(R.id.txt_skillContent)).setVisibility(View.VISIBLE);
+                                            ((TextView) mView.findViewById(R.id.txt_skillContent)).setText("No Skill to show");
+                                        }
+                                        for (int k = 0; k < arrSkill.length(); k++) {
+                                            JSONObject arrObj = arrSkill.getJSONObject(k);
+                                            CommonModel cm = new CommonModel();
+                                            cm.lId = arrObj.getString("Id");
+                                            cm.lName = arrObj.getString("N");
+                                            skillList.add(cm);
+                                        }
+
+                                    SkillAdapterSetting skadpeter = new SkillAdapterSetting(AboutFragment.this, getContext(), skillList);
+                                    recycler_view_sk.setAdapter(skadpeter);
+
+/*-------------------------------------------Complete Skills List-------------------------------------------------------------------*/
+/*------------------------------------------- About List-------------------------------------------------------------------*/
+
+                                        JSONArray arrAbout = obj.getJSONArray("Bls");
+                                        JSONObject objLin = arrAbout.getJSONObject(0);
+                                        String imgLink = objLin.getString("OV");
+
+                                        JSONObject objDec = arrAbout.getJSONObject(1);
+                                        getLink = objDec.getString("OV");
+                                        txt_link.setText(getLink);
+                                        //txt_link.setText(getDec);
+
+                                        JSONObject objAbout = arrAbout.getJSONObject(2);
+                                        getDec = objAbout.getString("OV");
+                                        txt_dec.setText(getDec);
+                                        //txt_dec.setText(getTitle);
+
+                                        JSONObject objTitle = arrAbout.getJSONObject(3);
+                                        getTitle = objTitle.getString("OV");
+                                        txt_title.setText(getTitle);
+
+/*-------------------------------------------Complete about List-------------------------------------------------------------------*/
 
                                     } catch (JSONException e) {
                                         e.printStackTrace();
@@ -553,4 +813,10 @@ public class AboutFragment extends Fragment {
         RecyclerView.LayoutManager addsrecy = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         recycler_view.setLayoutManager(addsrecy);
     }
+
+    private void setRecleyGrideViewManager(RecyclerView recycler_view) {
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 3);
+        recycler_view.setLayoutManager(gridLayoutManager);
+    }
+
 }
