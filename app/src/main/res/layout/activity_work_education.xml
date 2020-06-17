@@ -19,7 +19,8 @@
             android:id="@+id/img_back"
             android:layout_width="@dimen/dimen_40dp"
             android:layout_height="wrap_content"
-            android:padding="12dp"
+            android:padding="10dp"
+            android:layout_gravity="center"
             android:src="@drawable/ic_back_arrow" />
 
         <TextView
@@ -140,7 +141,7 @@
                                                     android:layout_height="wrap_content">
 
                                                     <EditText
-                                                        android:id="@+id/edt_name"
+                                                        android:id="@+id/edt_orgName"
                                                         style="@style/EditText.Flat.Grey"
                                                         android:layout_width="match_parent"
                                                         android:layout_height="45dp"
@@ -151,7 +152,7 @@
                                                         android:singleLine="true" />
 
                                                     <ImageButton
-                                                        android:id="@+id/btn_next"
+                                                        android:id="@+id/btn_orgNext"
                                                         android:layout_width="@dimen/dimen_40dp"
                                                         android:layout_height="@dimen/dimen_35dp"
                                                         android:layout_alignParentRight="true"
@@ -231,7 +232,9 @@
                                     android:id="@+id/lyt_expand_text"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:orientation="vertical">
+                                    android:orientation="vertical"
+                                    android:paddingRight="@dimen/dimen_10dp"
+                                    android:paddingLeft="@dimen/dimen_10dp">
 
                                     <LinearLayout
                                         android:layout_width="match_parent"
@@ -411,7 +414,7 @@
                                     android:orientation="vertical">
 
                                     <TextView
-                                        android:id="@+id/txt_name"
+                                        android:id="@+id/txt_viewOrgName"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:text="Organization Name"
@@ -420,7 +423,7 @@
                                         android:textSize="13dp" />
 
                                     <TextView
-                                        android:id="@+id/txt_email"
+                                        android:id="@+id/txt_orgContent"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_marginTop="@dimen/spacing_medium"
@@ -429,23 +432,13 @@
                                         android:textColor="@color/grey_80"
                                         android:textSize="13dp" />
                                 </LinearLayout>
-
-                                <androidx.cardview.widget.CardView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    app:cardCornerRadius="10dp"
-                                    app:cardElevation="2dp"
-                                    android:layout_gravity="center">
-                                    <ImageView
-                                        android:id="@+id/btn_create"
-                                        android:background="#7367F0"
-                                        android:padding="@dimen/dimen_10dp"
-                                        android:layout_width="@dimen/dimen_40dp"
-                                        android:layout_height="@dimen/dimen_35dp"
-                                        android:src="@drawable/create_user"/>
-
-                                </androidx.cardview.widget.CardView>
-
+                                <ImageView
+                                    android:id="@+id/img_createOrg"
+                                    android:layout_gravity="center"
+                                    android:layout_width="@dimen/dimen_25dp"
+                                    android:layout_height="@dimen/dimen_25dp"
+                                    android:src="@drawable/ic_add_pluse"
+                                    android:layout_marginRight="@dimen/dimen_12dp"/>
                             </LinearLayout>
 
 

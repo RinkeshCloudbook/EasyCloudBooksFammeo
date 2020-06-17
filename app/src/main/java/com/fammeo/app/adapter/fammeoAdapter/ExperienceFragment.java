@@ -1,4 +1,4 @@
-package com.fammeo.app.fragment.FammeoFragment;
+package com.fammeo.app.adapter.fammeoAdapter;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import com.fammeo.app.R;
 import com.fammeo.app.activity.WorkEducation;
@@ -16,9 +16,10 @@ import com.fammeo.app.activity.WorkEducation;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class EducationFragment extends Fragment {
+public class ExperienceFragment extends Fragment {
+
     View mView;
-    public EducationFragment() {
+    public ExperienceFragment() {
         // Required empty public constructor
     }
 
@@ -27,16 +28,17 @@ public class EducationFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        mView = inflater.inflate(R.layout.fragment_education, container, false);
+        mView = inflater.inflate(R.layout.fragment_experience, container, false);
 
-        ((ImageButton) mView.findViewById(R.id.img_edtEducation)).setOnClickListener(new View.OnClickListener() {
+        ((ImageView) mView.findViewById(R.id.img_edt_exp)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), WorkEducation.class);
-                intent.putExtra("E","edu");
+                intent.putExtra("E","Exp");
                 startActivity(intent);
             }
         });
+
 
         return mView;
     }

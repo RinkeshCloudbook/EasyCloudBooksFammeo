@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.fammeo.app.fragment.FammeoFragment.AboutFragment;
+import com.fammeo.app.fragment.FammeoFragment.EducationFragment;
 import com.fammeo.app.fragment.FammeoFragment.FollowersFragment;
 import com.fammeo.app.fragment.FammeoFragment.FollowingFragment;
 import com.fammeo.app.fragment.VewProfileFragment;
@@ -42,6 +43,14 @@ public class ViewProfilePagerAdapter extends FragmentPagerAdapter {
                 FollowingFragment following = new FollowingFragment();
                 mfragment[i] = following;
                 return following;
+            case 3:
+                EducationFragment EF = new EducationFragment();
+                mfragment[i] = EF;
+                return EF;
+            case 4:
+                ExperienceFragment ExpF = new ExperienceFragment();
+                mfragment[i] = ExpF;
+                return ExpF;
             default:
                 return null;
         }

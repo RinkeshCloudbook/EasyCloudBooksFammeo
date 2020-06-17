@@ -288,8 +288,11 @@ public class VewProfileFragment extends Fragment {
         tab_layout = mView.findViewById(R.id.tab_layout);
 
         tab_layout.addTab(tab_layout.newTab().setText("About"));
-        tab_layout.addTab(tab_layout.newTab().setText("Followers"));
-        tab_layout.addTab(tab_layout.newTab().setText("Following"));
+        tab_layout.addTab(tab_layout.newTab().setText("Followers"+" (1)"));
+        tab_layout.addTab(tab_layout.newTab().setText("Following"+" (1)"));
+        tab_layout.addTab(tab_layout.newTab().setText("Education"));
+        tab_layout.addTab(tab_layout.newTab().setText("Experience"));
+
         tab_layout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         ViewProfilePagerAdapter adapter = new ViewProfilePagerAdapter(getActivity(),getFragmentManager(),tab_layout.getTabCount());
@@ -299,7 +302,6 @@ public class VewProfileFragment extends Fragment {
         tab_layout.addOnTabSelectedListener(new TabLayout.BaseOnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                Log.e("TEST","Selected Tab :"+tab.getPosition());
                 view_pager.setCurrentItem(tab.getPosition());
             }
 
