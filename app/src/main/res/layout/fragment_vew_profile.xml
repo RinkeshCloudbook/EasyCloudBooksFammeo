@@ -54,42 +54,75 @@
                 app:contentInsetStartWithNavigation="0dp"
                 app:layout_collapseMode="pin"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
-            <RelativeLayout
-                android:layout_width="@dimen/dimen_80dp"
-                android:layout_height="@dimen/dimen_80dp"
-                app:fabSize="normal"
-                android:layout_gravity="bottom|center"
-                app:layout_anchorGravity="bottom|right|end"
-                android:padding="@dimen/dimen_4dp"
-                android:background="@drawable/circle"
-                android:layout_marginBottom="@dimen/dimen_10dp">
-
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|left"
+                app:layout_anchorGravity="bottom|left">
                 <RelativeLayout
+                    android:layout_width="@dimen/dimen_80dp"
+                    android:layout_height="@dimen/dimen_80dp"
+                    app:fabSize="normal"
+                    android:padding="@dimen/dimen_4dp"
+                    android:layout_marginLeft="@dimen/dimen_10dp"
+                    android:background="@drawable/circle"
+                    android:layout_marginBottom="@dimen/dimen_10dp">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fillAfter="false"
+                        android:fillEnabled="false"
+                        android:background="@drawable/circle">
+
+                        <com.fammeo.app.view.siv.CircularImageView
+                            android:id="@+id/search_image"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:scaleType="fitXY"
+                            />
+
+                        <TextView
+                            android:id="@+id/search_image_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:textColor="@android:color/white"
+                            android:textStyle="bold"
+                            android:textSize="@dimen/icon_star" />
+
+                    </RelativeLayout>
+
+                </RelativeLayout>
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fillAfter="false"
-                    android:fillEnabled="false"
-                    android:background="@drawable/circle">
-
-                    <com.fammeo.app.view.siv.CircularImageView
-                        android:id="@+id/search_image"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:scaleType="fitXY"
+                    android:layout_gravity="center"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="@dimen/dimen_7dp">
+                    <TextView
+                        android:id="@+id/txt_name"
+                        android:layout_gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textSize="@dimen/dimen_14sp"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
+                        android:textColor="@color/grey_bg"
                         />
 
                     <TextView
-                        android:id="@+id/search_image_text"
-                        android:layout_width="wrap_content"
+                        android:id="@+id/txt_uname"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:textColor="@android:color/white"
-                        android:textStyle="bold"
-                        android:textSize="@dimen/icon_star" />
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
+                        android:textColor="@color/grey_bg"
+                        android:textSize="@dimen/dimen_14sp" />
+                </LinearLayout>
+            </LinearLayout>
 
-                </RelativeLayout>
-
-            </RelativeLayout>
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
     </com.google.android.material.appbar.AppBarLayout>
@@ -111,32 +144,7 @@
             android:orientation="vertical"
             android:paddingBottom="@dimen/dimen_10dp">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:orientation="vertical">
-                <TextView
-                    android:id="@+id/txt_name"
-                    android:layout_gravity="center"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:textSize="@dimen/dimen_14sp"
-                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
-                    android:textColor="@color/grey_60"
-                    />
 
-                <TextView
-                    android:id="@+id/txt_uname"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
-                    android:textColor="@color/grey_60"
-                    android:textSize="@dimen/dimen_14sp" />
-            </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

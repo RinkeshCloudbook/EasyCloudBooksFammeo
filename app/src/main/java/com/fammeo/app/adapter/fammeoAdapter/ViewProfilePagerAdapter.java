@@ -12,6 +12,7 @@ import com.fammeo.app.fragment.FammeoFragment.AboutFragment;
 import com.fammeo.app.fragment.FammeoFragment.EducationFragment;
 import com.fammeo.app.fragment.FammeoFragment.FollowersFragment;
 import com.fammeo.app.fragment.FammeoFragment.FollowingFragment;
+import com.fammeo.app.fragment.FammeoFragment.TweetsFragment;
 import com.fammeo.app.fragment.VewProfileFragment;
 
 public class ViewProfilePagerAdapter extends FragmentPagerAdapter {
@@ -51,6 +52,10 @@ public class ViewProfilePagerAdapter extends FragmentPagerAdapter {
                 ExperienceFragment ExpF = new ExperienceFragment();
                 mfragment[i] = ExpF;
                 return ExpF;
+            case 5:
+                TweetsFragment TF = new TweetsFragment();
+                mfragment[i] = TF;
+                return TF;
             default:
                 return null;
         }

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragment.FammeoFragment.TweetsFragment">
+
+    <androidx.cardview.widget.CardView
+        android:layout_marginTop="@dimen/dimen_5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@android:color/white"
+        app:cardCornerRadius="2dp"
+        app:cardElevation="2dp"
+        app:cardUseCompatPadding="true"
+        android:paddingTop="@dimen/dimen_10dp"
+        android:paddingBottom="@dimen/dimen_10dp">
+        <TextView
+            android:layout_marginTop="@dimen/dimen_10dp"
+            android:layout_width="match_parent"
+            android:background="@drawable/no_content_bg"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/dimen_15dp"
+            android:textColor="#757ff3"
+            android:textStyle="bold"
+            android:text="twitter account is not linked with your profile Or your twitter id is wrong"
+            android:layout_marginRight="@dimen/dimen_10dp"
+            android:layout_marginLeft="@dimen/dimen_10dp"
+            android:padding="@dimen/dimen_10dp"
+            android:layout_marginBottom="@dimen/dimen_10dp"
+            />
+    </androidx.cardview.widget.CardView>
+</FrameLayout>

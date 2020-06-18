@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.fammeo.app.R;
+import com.fammeo.app.activity.EditActivity.IndustryExperience;
+import com.fammeo.app.activity.EditActivity.SoftwareExperience;
 import com.fammeo.app.activity.WorkEducation;
 
 /**
@@ -35,6 +37,20 @@ public class ExperienceFragment extends Fragment {
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), WorkEducation.class);
                 intent.putExtra("E","Exp");
+                startActivity(intent);
+            }
+        });
+        ((ImageView) mView.findViewById(R.id.img_ind_exp)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), IndustryExperience.class);
+                startActivity(intent);
+            }
+        });
+        ((ImageView) mView.findViewById(R.id.img_soft_exp)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), SoftwareExperience.class);
                 startActivity(intent);
             }
         });

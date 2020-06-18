@@ -45,18 +45,19 @@ import static com.fammeo.app.constants.Constants.METHOD_GET_SEARCHCITY_USER;
 
 public class EducationDetails extends AppCompatActivity {
     private static final String TAG = EducationDetails.class.getSimpleName();
-    EditText edt_city,edt_dec,Expedt_city,Expedt_dec;
+    EditText edt_city,edt_dec,Expedt_city,Expedt_dec,Orgedt_city,Orgedt_dec;
     String cName,state,country, getOrgName,flage;
     public CustomAuthRequest request;
     List<CommonModel> mCityList = new ArrayList<>();
 
-    AutoCompleteTextView autoComplete,ExpautoComplete;
+    AutoCompleteTextView autoComplete,ExpautoComplete,OrgautoComplete;
     String[] structure = {"University ","College","School","Educational Insitute","Other"};
     String[] exp_structure = {"Company ","Public Limited","Privat Limited","Partnership","HUF","Proprietoship"
             ,"Non-Profite","Association/Club","NGO","Trus","Association","Goverment Agency","Intergovermental"
             ,"Other","Individual","Banking","Electricity","Insurance","Forieng","One Person Company","Society","Local Authority"
             ,"Artificial Juridical Person","Body of Individual"};
-    RecyclerView recycler_add_type,Exprecycler_add_type;
+
+    RecyclerView recycler_add_type,Exprecycler_add_type,Orgrecycler_add_type;
     AppCompatButton bt_save_about;
 
     @Override
@@ -66,18 +67,28 @@ public class EducationDetails extends AppCompatActivity {
 
         autoComplete = findViewById(R.id.autoComplete);
         ExpautoComplete = findViewById(R.id.ExpautoComplete);
+        OrgautoComplete = findViewById(R.id.OrgautoComplete);
+
         edt_city = findViewById(R.id.edt_city);
+        Orgedt_city = findViewById(R.id.Orgedt_city);
         Expedt_city = findViewById(R.id.Expedt_city);
+
         edt_dec = findViewById(R.id.edt_dec);
         Expedt_dec = findViewById(R.id.Expedt_dec);
+        Orgedt_dec = findViewById(R.id.Orgedt_dec);
+
         recycler_add_type = findViewById(R.id.recycler_add_type);
         Exprecycler_add_type = findViewById(R.id.Exprecycler_add_type);
+        Orgrecycler_add_type = findViewById(R.id.Orgrecycler_add_type);
+
         bt_save_about = findViewById(R.id.bt_save_about);
 
         RecyclerView.LayoutManager addsrecy = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
         recycler_add_type.setLayoutManager(addsrecy);
         RecyclerView.LayoutManager recy = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
         Exprecycler_add_type.setLayoutManager(recy);
+        RecyclerView.LayoutManager rv = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
+        Orgrecycler_add_type.setLayoutManager(rv);
 
         Bundle bundle = getIntent().getExtras();
         if(bundle != null){
@@ -88,12 +99,18 @@ public class EducationDetails extends AppCompatActivity {
             if(flage.equalsIgnoreCase("edu")){
                 bt_save_about.setVisibility(View.VISIBLE);
                 ((LinearLayout) findViewById(R.id.lin_education)).setVisibility(View.VISIBLE);
-            }else {
+            }else if(flage.equalsIgnoreCase("exp")) {
                 ((TextView) findViewById(R.id.dailog_header)).setText("Experience Details");
                 ((AppCompatButton) findViewById(R.id.bt_Expsave_about)).setVisibility(View.VISIBLE);
                 ((TextView) findViewById(R.id.txt_ExpgetName)).setText(getOrgName);
                 ((LinearLayout) findViewById(R.id.lin_Experience)).setVisibility(View.VISIBLE);
                 expGetData();
+            }else if(flage.equalsIgnoreCase("org")){
+                ((TextView) findViewById(R.id.dailog_header)).setText("Organization Details");
+                ((AppCompatButton) findViewById(R.id.bt_Orgsave_about)).setVisibility(View.VISIBLE);
+                ((LinearLayout) findViewById(R.id.lin_Orgerience)).setVisibility(View.VISIBLE);
+                ((TextView) findViewById(R.id.txt_OrggetName)).setText(getOrgName);
+                organiseGetData();
             }
         }
         ((ImageView) findViewById(R.id.img_back)).setOnClickListener(new View.OnClickListener() {
@@ -171,6 +188,15 @@ public class EducationDetails extends AppCompatActivity {
 
             }
         });
+        ((Button) findViewById(R.id.Orgbtn_reset)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                OrgautoComplete.setText("");
+                Orgedt_city.setText("");
+                Orgedt_dec.setText("");
+
+            }
+        });
     }
 
     private void expGetData() {
@@ -218,6 +244,49 @@ public class EducationDetails extends AppCompatActivity {
         });
     }
 
+    private void organiseGetData() {
+        Orgedt_city.addTextChangedListener(new TextWatcher() {
+            long lastChange = 0;
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(final CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(final Editable s) {
+
+                if (s.length() >= 3) {
+                    Exprecycler_add_type.setVisibility(View.VISIBLE);
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            seachCity(s.toString(),"org");
+                        }
+                    }, 300);
+                    lastChange = System.currentTimeMillis();
+                }
+            }
+        });
+
+        ArrayAdapter adapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,exp_structure);
+        OrgautoComplete.setAdapter(adapter);
+        OrgautoComplete.setThreshold(1);
+
+        ((AppCompatButton) findViewById(R.id.bt_Orgsave_about)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), SecondMainActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
     private void seachCity(final String cName, final String getFlage) {
         // pbHeaderProgress.setVisibility(View.VISIBLE);
         Log.e("TEST", "Search City :" + cName);
@@ -251,11 +320,13 @@ public class EducationDetails extends AppCompatActivity {
                                         //String name = cm.cN + ", " + cm.cState + ", " + cm.cCountry;
                                         mCityList.add(cm);
                                     }
-                                    EducationCityListAdapter adapter = new EducationCityListAdapter(EducationDetails.this, mCityList);
+                                    EducationCityListAdapter adapter = new EducationCityListAdapter(EducationDetails.this, mCityList,getFlage);
                                     if(getFlage.equalsIgnoreCase("edu")){
                                         recycler_add_type.setAdapter(adapter);
                                     }else if(getFlage.equalsIgnoreCase("exp")){
                                         Exprecycler_add_type.setAdapter(adapter);
+                                    }else if(getFlage.equalsIgnoreCase("org")){
+                                        Orgrecycler_add_type.setAdapter(adapter);
                                     }
 
                                     adapter.notifyDataSetChanged();
@@ -301,12 +372,23 @@ public class EducationDetails extends AppCompatActivity {
         };
     }
 
-    public void cityName(String cN, String cState, String cCountry, String fullCname){
+    public void cityName(String cN, String cState, String cCountry, String fullCname,String setFlage){
         Log.e("TEST","Education cState :"+cState);
-        edt_city.setText(fullCname);
+        Log.e("TEST","Get Flage :"+setFlage);
+
         cName = cN;
         state = cState;
         country = cCountry;
+        if(setFlage.equalsIgnoreCase("edu")){
+            edt_city.setText(fullCname);
+        }else  if(setFlage.equalsIgnoreCase("exp")){
+            Expedt_city.setText(fullCname);
+        }else  if(setFlage.equalsIgnoreCase("org")){
+            Orgedt_city.setText(fullCname);
+        }
+        Orgedt_city.setText(fullCname);
         recycler_add_type.setVisibility(View.GONE);
+        Exprecycler_add_type.setVisibility(View.GONE);
+        Orgrecycler_add_type.setVisibility(View.GONE);
     }
 }

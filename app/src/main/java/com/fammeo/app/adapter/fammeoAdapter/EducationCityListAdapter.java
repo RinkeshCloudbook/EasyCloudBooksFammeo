@@ -22,10 +22,11 @@ import java.util.List;
 public class EducationCityListAdapter extends RecyclerView.Adapter<EducationCityListAdapter.ViewHolder> {
     EducationDetails context;
     List<CommonModel> mCityList;
-
-    public EducationCityListAdapter(EducationDetails workEducation, List<CommonModel> mCityList) {
+    String flage;
+    public EducationCityListAdapter(EducationDetails workEducation, List<CommonModel> mCityList, String getFlage) {
         this.context = workEducation;
         this.mCityList = mCityList;
+        this.flage = getFlage;
     }
 
     @NonNull
@@ -46,7 +47,7 @@ public class EducationCityListAdapter extends RecyclerView.Adapter<EducationCity
                 String city = mCityList.get(i).cN+", "+ mCityList.get(i).cState+", "+ mCityList.get(i).cCountry;
                 Log.e("TEST","City Name :"+city);
                 // dataInterface.CityData(mCityList.get(i).cN,mCityList.get(i).cState,mCityList.get(i).cCountry);
-                context.cityName(mCityList.get(i).cN,mCityList.get(i).cState,mCityList.get(i).cCountry,city);
+                context.cityName(mCityList.get(i).cN,mCityList.get(i).cState,mCityList.get(i).cCountry,city,flage);
             }
         });
     }

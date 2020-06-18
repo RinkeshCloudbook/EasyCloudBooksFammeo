@@ -27,9 +27,13 @@ import com.fammeo.app.app.App;
 import com.fammeo.app.fragment.CompanyFragment;
 import com.fammeo.app.fragment.FammeoFragment.ConnectionFragment;
 import com.fammeo.app.fragment.FammeoFragment.ConversationsFragment;
+import com.fammeo.app.fragment.FammeoFragment.DashboradFragment;
+import com.fammeo.app.fragment.FammeoFragment.DirectoriesFragment;
 import com.fammeo.app.fragment.FammeoFragment.EducationFragment;
 import com.fammeo.app.fragment.FammeoFragment.FollowersFragment;
 import com.fammeo.app.fragment.FammeoFragment.FollowingFragment;
+import com.fammeo.app.fragment.FammeoFragment.MembersFragment;
+import com.fammeo.app.fragment.FammeoFragment.OrganisationFragment;
 import com.fammeo.app.fragment.FinishedProjectFragment;
 import com.fammeo.app.fragment.HomeFragment;
 import com.fammeo.app.fragment.NoCompanyFragment;
@@ -168,7 +172,6 @@ public class SecondMainActivity extends AppCompatActivity implements FragmentDra
         super.onSaveInstanceState(outState);
 
         outState.putBoolean("restore", true);
-        outState.putBoolean("restore", true);
         outState.putString("mTitle", getSupportActionBar().getTitle().toString());
         getSupportFragmentManager().putFragment(outState, "currentFragment", fragment);
     }
@@ -211,7 +214,7 @@ public class SecondMainActivity extends AppCompatActivity implements FragmentDra
 
                     break;
                 }
-                case "View Profile": {
+                case "Home": {
 
                     page = 1;
                     fragment = new VewProfileFragment();
@@ -224,79 +227,65 @@ public class SecondMainActivity extends AppCompatActivity implements FragmentDra
 
                     break;
                 }
-                case "Conversations": {
+                case "Profile": {
 
                     page = 2;
-                    fragment = new ConversationsFragment();
+                    fragment = new VewProfileFragment();
                     doc = "02";
-                    getSupportActionBar().setTitle("Conversations");
+                    getSupportActionBar().setTitle("View Profile");
                     action = true;
 
                     break;
                 }
-                case "Connections": {
+                case "Dashborad": {
 
                     page = 3;
-                    fragment = new ConnectionFragment();
+                    fragment = new DashboradFragment();
                     doc = "03";
-                    getSupportActionBar().setTitle("Connections");
+                    getSupportActionBar().setTitle("Dashborad");
                     action = true;
 
                     break;
                 }
-                case "Followers": {
+                case "Members": {
 
                     page = 4;
-                    fragment = new FollowersFragment();
+                    fragment = new MembersFragment();
                     doc = "04";
-                    getSupportActionBar().setTitle("Followers");
+                    getSupportActionBar().setTitle("Members");
                     action = true;
 
                     break;
                 }
-                case "Following": {
+                case "Organisations": {
 
                     page = 5;
-                    fragment = new FollowingFragment();
+                    fragment = new OrganisationFragment();
                     doc = "05";
-                    getSupportActionBar().setTitle("Following");
+                    getSupportActionBar().setTitle("Organisations");
                     action = true;
 
                     break;
                 }
-                case "Education":{
+                case "Conversations":{
                     page = 6;
-                    fragment = new EducationFragment();
-                    doc = "05";
-                    getSupportActionBar().setTitle("Education");
+                    fragment = new ConversationsFragment();
+                    doc = "06";
+                    getSupportActionBar().setTitle("Conversations");
+                    action = true;
+                    break;
+                }
+                case "Directories":{
+                    page = 7;
+                    fragment = new DirectoriesFragment();
+                    doc = "07";
+                    getSupportActionBar().setTitle("Directories");
                     action = true;
 
-
-                    break;
-                }
-                case "Experience":{
-
-                    page = 7;
-                    /*fragment = new PaymentFragment();
-                    doc = "07";
-                    getSupportActionBar().setTitle("Paying to "+ App.getInstance().getACName(App.getInstance().getCurrentACId()));
-
-                    action = true;*/
-
                     break;
                 }
 
-                case "Tweets":{
 
-                    page = 7;
-                    /*fragment = new PaymentFragment();
-                    doc = "07";
-                    getSupportActionBar().setTitle("Paying to "+ App.getInstance().getACName(App.getInstance().getCurrentACId()));
-
-                    action = true;*/
-
-                    break;
-                }
                 default: {
                     page = 8;
                     Intent i = new Intent(SecondMainActivity.this, SettingsActivity.class);

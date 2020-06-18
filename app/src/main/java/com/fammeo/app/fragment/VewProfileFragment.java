@@ -292,6 +292,7 @@ public class VewProfileFragment extends Fragment {
         tab_layout.addTab(tab_layout.newTab().setText("Following"+" (1)"));
         tab_layout.addTab(tab_layout.newTab().setText("Education"));
         tab_layout.addTab(tab_layout.newTab().setText("Experience"));
+        tab_layout.addTab(tab_layout.newTab().setText("Tweets"));
 
         tab_layout.setTabGravity(TabLayout.GRAVITY_FILL);
 

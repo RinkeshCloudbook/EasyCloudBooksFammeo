@@ -240,32 +240,34 @@
     <string name="page_1">Profile</string>
 
     <string-array name="navDrawerItems">
-        <item>View Profile</item>
+        <item>Home</item>
+        <item>Profile</item>
+        <item>Dashborad</item>
+        <item>Members</item>
+        <item>Organisations</item>
         <item>Conversations</item>
-        <item>Connections</item>
-        <item>Followers</item>
-        <item>Following</item>
-        <item>Education</item>
-        <item>Experience</item>
-        <item>Tweets</item>
+        <item>Directories</item>
+
         <!--<item>Profile</item>-->
         <item>Settings</item>
+        <item>Logout</item>
     </string-array>
     <string-array name="NoCompanynavDrawerItems">
         <item>Settings</item>
     </string-array>
 
     <string-array name="navDrawerIcons">
-        <item>@string/fa_bell</item>
-        <item>@string/fa_university</item>
-        <item>@string/fa_suitcase</item>
-        <item>@string/fa_suitcase</item>
-        <item>@string/fa_suitcase</item>
-        <item>@string/fa_suitcase</item>
-        <item>@string/fa_suitcase</item>
-        <item>@string/fa_suitcase</item>
+        <item>@string/fa_home</item>
+        <item>@string/fa_user</item>
+        <item>@string/fa_envelope_o</item>
+        <item>@string/fa_user</item>
+        <item>@string/fa_building_o</item>
+        <item>@string/fa_comments_o</item>
+        <item>@string/fa_bookmark_o</item>
+
        <!-- <item>@string/fa_user</item>-->
         <item>@string/fa_cog</item>
+        <item>@string/fa_sign_out</item>
     </string-array>
 
     <string-array name="NoCompanynavDrawerIcons">
