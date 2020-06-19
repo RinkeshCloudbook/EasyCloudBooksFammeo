@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +16,8 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -29,6 +32,7 @@ import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.fammeo.app.R;
 import com.fammeo.app.activity.SettingEdit;
+import com.fammeo.app.adapter.fammeoAdapter.AddressDailogeAdapter;
 import com.fammeo.app.adapter.fammeoAdapter.CityAdapter;
 import com.fammeo.app.adapter.fammeoAdapter.CityListAdapter;
 import com.fammeo.app.app.App;
@@ -78,6 +82,8 @@ public class EditAddress extends AppCompatActivity {
             cName = extras.getString("C");
             state = extras.getString("S");
             country = extras.getString("Con");
+            Log.e("TEST","Address :"+aAdd);
+            Log.e("TEST","Address Type :"+aType);
 
             String aCity = extras.getString("C") + ", " + extras.getString("S") + ", " + extras.getString("Con");
 
@@ -85,6 +91,18 @@ public class EditAddress extends AppCompatActivity {
             edt_address.setText(aAdd);
             edt_city.setText(aCity);
         }
+
+        edt_city.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //citySearchCustomDialog();
+                Intent intent = new Intent(getApplicationContext(),citySearchWindow.class);
+                intent.putExtra("T",edt_addressType.getText().toString());
+                intent.putExtra("A",edt_address.getText().toString());
+                intent.putExtra("ID",id);
+                startActivity(intent);
+            }
+        });
 
         RecyclerView.LayoutManager recyce = new LinearLayoutManager(EditAddress.this, LinearLayoutManager.VERTICAL, false);
         recycler_add_type.setLayoutManager(recyce);
@@ -140,6 +158,24 @@ public class EditAddress extends AppCompatActivity {
         });
     }
 
+    private void citySearchCustomDialog() {
+        final Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.search_address_dialog_event);
+        dialog.setCancelable(true);
+
+   //     final EditText edt_addressType = dialog.findViewById(R.id.edt_addressType);
+
+        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+        lp.copyFrom(dialog.getWindow().getAttributes());
+        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+
+
+        dialog.show();
+        dialog.getWindow().setAttributes(lp);
+    }
+
     private void saveAddress(final Editable atype, final Editable getAddress, final String cName, final String state, final String country, final String aId) {
 
             request = new CustomAuthRequest(Request.Method.POST, METHOD_GET_SAVE_ADDRESS_USER, null, 0,
@@ -161,8 +197,7 @@ public class EditAddress extends AppCompatActivity {
                                         handler.postDelayed(new Runnable() {
                                             @Override
                                             public void run() {
-                                                Intent intent = new Intent(getApplicationContext(), VewProfileFragment.class);
-                                                intent.putExtra("R",01);
+                                                Intent intent = new Intent(getApplicationContext(), SecondMainActivity.class);
                                                 startActivity(intent);
                                                 /*phoneList.clear();
                                                 getUserData();
@@ -257,9 +292,9 @@ public class EditAddress extends AppCompatActivity {
                                         //String name = cm.cN + ", " + cm.cState + ", " + cm.cCountry;
                                         mCityList.add(cm);
                                     }
-                                    CityListAdapter adapter = new CityListAdapter(EditAddress.this, mCityList);
-                                    recycler_add_type.setAdapter(adapter);
-                                    adapter.notifyDataSetChanged();
+                                   // CityListAdapter adapter = new CityListAdapter(EditAddress.this, mCityList);
+                                    //recycler_add_type.setAdapter(adapter);
+                                    //adapter.notifyDataSetChanged();
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }

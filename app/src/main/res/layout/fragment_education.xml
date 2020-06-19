@@ -47,6 +47,7 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:visibility="gone"
                         android:id="@+id/txt_educationContent"
                         android:layout_width="match_parent"
                         android:background="@drawable/no_content_bg"
@@ -59,6 +60,18 @@
                         android:layout_marginLeft="@dimen/dimen_10dp"
                         android:padding="@dimen/dimen_10dp"
                         android:layout_marginBottom="@dimen/dimen_10dp"
+                        />
+                    <TextView
+                        android:layout_gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dimen_7dp"
+                        android:text="No Education to show"
+                        android:textSize="@dimen/dimen_14sp"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat"
+                        android:textColor="@color/grey_90"
+                        android:layout_margin="@dimen/dimen_10dp"
+                        android:padding="@dimen/dimen_10dp"
                         />
                 </LinearLayout>
             </LinearLayout>

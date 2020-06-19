@@ -32,6 +32,7 @@ import com.fammeo.app.fragment.FammeoFragment.DirectoriesFragment;
 import com.fammeo.app.fragment.FammeoFragment.EducationFragment;
 import com.fammeo.app.fragment.FammeoFragment.FollowersFragment;
 import com.fammeo.app.fragment.FammeoFragment.FollowingFragment;
+import com.fammeo.app.fragment.FammeoFragment.HomeFammeoFragment;
 import com.fammeo.app.fragment.FammeoFragment.MembersFragment;
 import com.fammeo.app.fragment.FammeoFragment.OrganisationFragment;
 import com.fammeo.app.fragment.FinishedProjectFragment;
@@ -217,10 +218,9 @@ public class SecondMainActivity extends AppCompatActivity implements FragmentDra
                 case "Home": {
 
                     page = 1;
-                    fragment = new VewProfileFragment();
+                    fragment = new HomeFammeoFragment();
                     doc = "01";
-                    Log.e("TEST","Title :"+title);
-                    getSupportActionBar().setTitle(title);
+                    getSupportActionBar().setTitle("Home");
                     /*if(intentBundle != null)
                         ((NotificationFragment)fragment).SetFilterBundle(intentBundle.getBundle("bundle"));*/
                     action = true;
@@ -228,7 +228,6 @@ public class SecondMainActivity extends AppCompatActivity implements FragmentDra
                     break;
                 }
                 case "Profile": {
-
                     page = 2;
                     fragment = new VewProfileFragment();
                     doc = "02";

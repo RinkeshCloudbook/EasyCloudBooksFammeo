@@ -24,18 +24,6 @@
             android:title="@string/settings_version"
 
             android:summary="@string/settings_copyright_info" />
-    </PreferenceCategory>
-
-    <PreferenceCategory
-        android:key="header_others"
-        android:title="@string/settings_header_others">
-
-        <Preference
-            android:key="settings_logout"
-            android:title="@string/settings_logout"
-            android:enabled="true"
-            android:summary="" />
-
         <Preference
             android:key="settings_crash"
             android:title="Crash"
@@ -43,4 +31,18 @@
             android:summary="" />
     </PreferenceCategory>
 
+    <PreferenceCategory
+        android:key="header_others"
+        >
+
+        <Preference
+            android:key="settings_logout"
+
+            android:enabled="true"
+            android:summary="" />
+
+
+    </PreferenceCategory>
+    <!--android:title="@string/settings_logout"-->
+    <!--android:title="@string/settings_header_others"-->
 </PreferenceScreen>

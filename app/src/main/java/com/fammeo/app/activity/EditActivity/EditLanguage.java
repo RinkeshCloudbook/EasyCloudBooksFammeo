@@ -53,7 +53,7 @@ public class EditLanguage extends AppCompatActivity {
     public CustomAuthRequest request;
     AppCompatButton bt_save;
     String userId;
-    ArrayList<CommonModel> lanList;
+    ArrayList<CommonModel> lanList = new ArrayList<>();
     ArrayList<CommonModel> searchLang = new ArrayList<>();
     LanguageListAdapter listAdapter, listAdapter1;
     @Override

@@ -69,51 +69,125 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:orientation="vertical"
-                        android:paddingTop="@dimen/dimen_10dp">
+                        android:paddingTop="@dimen/dimen_10dp"
 
-                        <TextView
-                            android:id="@+id/txt_title"
+                        android:paddingBottom="@dimen/dimen_10dp">
+
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="@dimen/spacing_medium"
-                            android:text=""
-                            android:layout_marginLeft="@dimen/dimen_10dp"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                            android:textColor="@color/grey_60" />
-                        <TextView
-                            android:id="@+id/txt_dec"
+                            android:orientation="vertical"
+                            android:paddingBottom="@dimen/dimen_4dp"
+                            android:paddingLeft="@dimen/dimen_20dp"
+                            android:paddingRight="@dimen/dimen_20dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Title"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                                android:textColor="@color/grey_40" />
+
+                            <TextView
+                                android:id="@+id/txt_title"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text=""
+                                android:textAppearance="@style/Base.TextAppearance.AppCompat"
+                                android:textColor="@color/grey_90" />
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/grey_5" />
+
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="@dimen/spacing_medium"
-                            android:text=""
-                            android:layout_marginLeft="@dimen/dimen_10dp"
-                            style="@style/EditText.Flat.Grey"
-                            android:textColor="@color/grey_60" />
-                        <TextView
-                            android:id="@+id/txt_link"
+                            android:orientation="vertical"
+                            android:paddingTop="@dimen/dimen_4dp"
+                            android:paddingLeft="@dimen/dimen_20dp"
+                            android:paddingRight="@dimen/dimen_20dp"
+                            android:paddingBottom="@dimen/key_line_4">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Description"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                                android:textColor="@color/grey_40" />
+
+                            <TextView
+                                android:id="@+id/txt_dec"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text=""
+                                android:textAppearance="@style/Base.TextAppearance.AppCompat"
+                                android:textColor="@color/grey_90" />
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/grey_5" />
+
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="@dimen/spacing_medium"
-                            android:autoLink="web"
-                            android:linksClickable="true"
-                            android:layout_marginLeft="@dimen/dimen_10dp"
-                            style="@style/EditText.Flat.Grey"
-                            android:textColor="@color/grey_60" />
+                            android:orientation="vertical"
+                            android:paddingTop="@dimen/dimen_4dp"
+                            android:paddingLeft="@dimen/dimen_20dp"
+                            android:paddingRight="@dimen/dimen_20dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="About Video"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                                android:textColor="@color/grey_40" />
+                            <TextView
+                                android:id="@+id/txt_link"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:autoLink="web"
+                                android:text=""
+                                android:textAppearance="@style/Base.TextAppearance.AppCompat"
+                                android:textColor="@color/grey_90"
+                                android:linksClickable="true"/>
+                        </LinearLayout>
                         <TextView
                             android:visibility="gone"
-                            android:id="@+id/txt_aboutContent"
                             android:layout_width="match_parent"
                             android:background="@drawable/no_content_bg"
                             android:layout_height="wrap_content"
                             android:textSize="@dimen/dimen_15dp"
                             android:textColor="#757ff3"
                             android:textStyle="bold"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat"
                             android:layout_marginRight="@dimen/dimen_10dp"
                             android:layout_marginLeft="@dimen/dimen_10dp"
                             android:padding="@dimen/dimen_10dp"
                             />
+                        <TextView
+                            android:visibility="gone"
+                            android:id="@+id/txt_aboutContent"
+                            android:layout_gravity="center"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Email"
+                            android:layout_marginLeft="@dimen/dimen_7dp"
+                            android:textSize="@dimen/dimen_14sp"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat"
+                            android:textColor="@color/grey_90"
+                            android:layout_margin="@dimen/dimen_10dp"
+                            android:padding="@dimen/dimen_10dp"
+                            />
 
                     </LinearLayout>
+
 
                 </androidx.cardview.widget.CardView>
             </LinearLayout>
@@ -214,18 +288,17 @@
                     </LinearLayout>
                     <TextView
                         android:visibility="gone"
-                        android:layout_marginTop="@dimen/dimen_10dp"
                         android:id="@+id/txt_socContent"
+                        android:layout_gravity="center"
                         android:layout_width="match_parent"
-                        android:background="@drawable/no_content_bg"
                         android:layout_height="wrap_content"
-                        android:textSize="@dimen/dimen_15dp"
-                        android:textColor="#757ff3"
-                        android:textStyle="bold"
-                        android:layout_marginRight="@dimen/dimen_10dp"
-                        android:layout_marginLeft="@dimen/dimen_10dp"
+                        android:text="Email"
+                        android:layout_marginLeft="@dimen/dimen_7dp"
+                        android:textSize="@dimen/dimen_14sp"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat"
+                        android:textColor="@color/grey_90"
+                        android:layout_margin="@dimen/dimen_10dp"
                         android:padding="@dimen/dimen_10dp"
-                        android:layout_marginBottom="@dimen/dimen_10dp"
                         />
                 </androidx.cardview.widget.CardView>
             </LinearLayout>
@@ -286,19 +359,18 @@
                             android:layout_height="match_parent"
                             android:scrollbars="vertical" />
                         <TextView
-                            android:layout_marginTop="@dimen/dimen_10dp"
                             android:visibility="gone"
                             android:id="@+id/txt_addContent"
+                            android:layout_gravity="center"
                             android:layout_width="match_parent"
-                            android:background="@drawable/no_content_bg"
                             android:layout_height="wrap_content"
-                            android:textSize="@dimen/dimen_15dp"
-                            android:textColor="#757ff3"
-                            android:textStyle="bold"
-                            android:layout_marginRight="@dimen/dimen_10dp"
-                            android:layout_marginLeft="@dimen/dimen_10dp"
+                            android:text="Email"
+                            android:layout_marginLeft="@dimen/dimen_7dp"
+                            android:textSize="@dimen/dimen_14sp"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat"
+                            android:textColor="@color/grey_90"
+                            android:layout_margin="@dimen/dimen_10dp"
                             android:padding="@dimen/dimen_10dp"
-                            android:layout_marginBottom="@dimen/dimen_10dp"
                             />
 
                     </LinearLayout>
@@ -468,16 +540,15 @@
                         <TextView
                             android:visibility="gone"
                             android:id="@+id/txt_phoneContent"
+                            android:layout_gravity="center"
                             android:layout_width="match_parent"
-                            android:background="@drawable/no_content_bg"
                             android:layout_height="wrap_content"
-                            android:textSize="@dimen/dimen_15dp"
-                            android:textColor="#757ff3"
-                            android:textStyle="bold"
-                            android:layout_marginRight="@dimen/dimen_10dp"
-                            android:layout_marginLeft="@dimen/dimen_10dp"
+                            android:layout_marginLeft="@dimen/dimen_7dp"
+                            android:textSize="@dimen/dimen_14sp"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat"
+                            android:textColor="@color/grey_90"
+                            android:layout_margin="@dimen/dimen_10dp"
                             android:padding="@dimen/dimen_10dp"
-                            android:layout_marginBottom="@dimen/dimen_10dp"
                             />
 
                     </LinearLayout>
@@ -592,14 +663,14 @@
                         <TextView
                             android:visibility="gone"
                             android:id="@+id/txt_langContent"
+                            android:layout_gravity="center"
                             android:layout_width="match_parent"
-                            android:background="@drawable/no_content_bg"
                             android:layout_height="wrap_content"
-                            android:textSize="@dimen/dimen_15dp"
-                            android:textColor="#757ff3"
-                            android:textStyle="bold"
-                            android:layout_marginRight="@dimen/dimen_10dp"
-                            android:layout_marginLeft="@dimen/dimen_10dp"
+                            android:layout_marginLeft="@dimen/dimen_7dp"
+                            android:textSize="@dimen/dimen_14sp"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat"
+                            android:textColor="@color/grey_90"
+                            android:layout_margin="@dimen/dimen_10dp"
                             android:padding="@dimen/dimen_10dp"
                             />
 
@@ -664,14 +735,14 @@
                         <TextView
                             android:visibility="gone"
                             android:id="@+id/txt_hbContent"
+                            android:layout_gravity="center"
                             android:layout_width="match_parent"
-                            android:background="@drawable/no_content_bg"
                             android:layout_height="wrap_content"
-                            android:textSize="@dimen/dimen_15dp"
-                            android:textColor="#757ff3"
-                            android:textStyle="bold"
-                            android:layout_marginRight="@dimen/dimen_10dp"
-                            android:layout_marginLeft="@dimen/dimen_10dp"
+                            android:layout_marginLeft="@dimen/dimen_7dp"
+                            android:textSize="@dimen/dimen_14sp"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat"
+                            android:textColor="@color/grey_90"
+                            android:layout_margin="@dimen/dimen_10dp"
                             android:padding="@dimen/dimen_10dp"
                             />
 
@@ -736,14 +807,14 @@
                         <TextView
                             android:visibility="gone"
                             android:id="@+id/txt_skillContent"
+                            android:layout_gravity="center"
                             android:layout_width="match_parent"
-                            android:background="@drawable/no_content_bg"
                             android:layout_height="wrap_content"
-                            android:textSize="@dimen/dimen_15dp"
-                            android:textColor="#757ff3"
-                            android:textStyle="bold"
-                            android:layout_marginRight="@dimen/dimen_10dp"
-                            android:layout_marginLeft="@dimen/dimen_10dp"
+                            android:layout_marginLeft="@dimen/dimen_7dp"
+                            android:textSize="@dimen/dimen_14sp"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat"
+                            android:textColor="@color/grey_90"
+                            android:layout_margin="@dimen/dimen_10dp"
                             android:padding="@dimen/dimen_10dp"
                             />
 
@@ -754,9 +825,6 @@
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
-
-
-
     <LinearLayout
         android:layout_gravity="center"
         android:id="@+id/pbHeaderProgress"

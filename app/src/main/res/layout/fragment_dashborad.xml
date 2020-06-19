@@ -147,15 +147,14 @@
                                         android:singleLine="true"
                                         android:text="Rinkesh patel"
                                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                                        android:textColor="@color/grey_90"
-                                        android:textStyle="bold" />
+                                        android:textColor="@color/grey_90" />
                                     <LinearLayout
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:orientation="horizontal">
                                         <ImageView
-                                            android:layout_width="@dimen/dimen_25dp"
-                                            android:layout_height="@dimen/dimen_25dp"
+                                            android:layout_width="@dimen/dimen_20dp"
+                                            android:layout_height="@dimen/dimen_20dp"
                                             android:layout_gravity="center"
                                             android:padding="3dp"
                                             android:tint="@color/grey_40"
@@ -164,22 +163,20 @@
                                             android:id="@+id/email"
                                             android:paddingLeft="@dimen/dimen_10dp"
                                             android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginTop="@dimen/spacing_small"
+                                            android:layout_height="@dimen/dimen_20dp"
                                             android:maxLines="1"
                                             android:singleLine="true"
                                             android:text="email.address@mail.com"
                                             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                                            android:textColor="@color/grey_40"
-                                            android:textStyle="bold" />
+                                            android:textColor="@color/grey_40" />
                                     </LinearLayout>
                                     <LinearLayout
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:orientation="horizontal">
                                         <ImageView
-                                            android:layout_width="@dimen/dimen_25dp"
-                                            android:layout_height="@dimen/dimen_25dp"
+                                            android:layout_width="@dimen/dimen_20dp"
+                                            android:layout_height="@dimen/dimen_20dp"
                                             android:layout_gravity="center"
                                             android:padding="3dp"
                                             android:tint="@color/grey_40"
@@ -187,22 +184,20 @@
                                         <TextView
                                             android:paddingLeft="@dimen/dimen_10dp"
                                             android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginTop="@dimen/spacing_small"
+                                            android:layout_height="@dimen/dimen_20dp"
                                             android:maxLines="1"
                                             android:singleLine="true"
                                             android:text="7405441686"
                                             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                                            android:textColor="@color/grey_40"
-                                            android:textStyle="bold" />
+                                            android:textColor="@color/grey_40" />
                                     </LinearLayout>
                                     <LinearLayout
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:orientation="horizontal">
                                         <ImageView
-                                            android:layout_width="@dimen/dimen_25dp"
-                                            android:layout_height="@dimen/dimen_25dp"
+                                            android:layout_width="@dimen/dimen_20dp"
+                                            android:layout_height="@dimen/dimen_20dp"
                                             android:layout_gravity="center"
                                             android:padding="3dp"
                                             android:tint="@color/grey_40"
@@ -211,13 +206,12 @@
                                             android:paddingLeft="@dimen/dimen_10dp"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:layout_marginTop="@dimen/spacing_small"
                                             android:maxLines="1"
                                             android:singleLine="true"
                                             android:text="Surat,Gujarat,India"
                                             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                                             android:textColor="@color/grey_40"
-                                            android:textStyle="bold" />
+                                             />
                                     </LinearLayout>
                                 </LinearLayout>
 
@@ -238,17 +232,6 @@
                             <View
                                 android:layout_width="@dimen/spacing_large"
                                 android:layout_height="0dp" />
-                            <ImageView
-                                android:background="@drawable/shape_rounded_theam"
-                                android:layout_gravity="center"
-                                android:layout_width="@dimen/dimen_45dp"
-                                android:layout_height="@dimen/dimen_45dp"
-                                android:padding="@dimen/spacing_middle"
-                                android:tint="@color/red_50"
-                                app:srcCompat="@drawable/ic_eye"
-                                android:layout_marginRight="@dimen/dimen_10dp"/>
-
-
                         </LinearLayout>
 
                     </com.balysv.materialripple.MaterialRippleLayout>
@@ -387,7 +370,7 @@
                                         android:text="Rinkesh org"
                                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                                         android:textColor="@color/grey_90"
-                                        android:textStyle="bold" />
+                                         />
                                     <LinearLayout
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
@@ -429,15 +412,6 @@
                             <View
                                 android:layout_width="@dimen/spacing_large"
                                 android:layout_height="0dp" />
-                            <ImageView
-                                android:background="@drawable/shape_rounded_theam"
-                                android:layout_gravity="center"
-                                android:layout_width="@dimen/dimen_45dp"
-                                android:layout_height="@dimen/dimen_45dp"
-                                android:padding="@dimen/spacing_middle"
-                                android:tint="@color/red_50"
-                                app:srcCompat="@drawable/ic_eye"
-                                android:layout_marginRight="@dimen/dimen_10dp"/>
 
 
                         </LinearLayout>

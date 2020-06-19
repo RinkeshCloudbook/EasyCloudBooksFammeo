@@ -27,7 +27,8 @@
         android:supportsRtl="true"
         android:theme="@style/MyMaterialTheme"
         tools:replace="android:allowBackup,android:icon">
-        <activity android:name=".activity.EditActivity.SoftwareExperience"></activity>
+        <activity android:name=".activity.EditActivity.citySearchWindow"></activity>
+        <activity android:name=".activity.EditActivity.SoftwareExperience" />
         <activity android:name=".activity.EditActivity.IndustryExperience" />
         <activity android:name=".activity.EditActivity.ConnectOrg" />
         <activity android:name=".activity.EditActivity.EducationDetails" />

@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.fammeo.app.R;
 import com.fammeo.app.activity.EditActivity.EditAddress;
+import com.fammeo.app.activity.EditActivity.citySearchWindow;
 import com.fammeo.app.common.CommomInterface;
 import com.fammeo.app.common.PassDataInterface;
 import com.fammeo.app.model.CommonModel;
@@ -20,13 +21,16 @@ import com.fammeo.app.model.CommonModel;
 import java.util.List;
 
 public class CityListAdapter extends RecyclerView.Adapter<CityListAdapter.ViewHolder> {
-    EditAddress contex;
+    citySearchWindow contex;
     List<CommonModel> mCityList;
     CommomInterface dataInterface;
-    String city;
-    public CityListAdapter(EditAddress editAddress, List<CommonModel> mCityList) {
+    String city,address,type,id;
+    public CityListAdapter(citySearchWindow editAddress, List<CommonModel> mCityList,String address,String type,String id) {
         this.contex = editAddress;
         this.mCityList = mCityList;
+        this.address = address;
+        this.type = type;
+        this.id = id;
     }
 
     @NonNull
@@ -49,7 +53,15 @@ public class CityListAdapter extends RecyclerView.Adapter<CityListAdapter.ViewHo
                 city = mCityList.get(i).cN+", "+ mCityList.get(i).cState+", "+ mCityList.get(i).cCountry;
                 Log.e("TEST","City Name :"+city);
                 // dataInterface.CityData(mCityList.get(i).cN,mCityList.get(i).cState,mCityList.get(i).cCountry);
-                 contex.cityName(mCityList.get(i).cN,mCityList.get(i).cState,mCityList.get(i).cCountry,city);
+                Intent intent = new Intent(contex,EditAddress.class);
+                intent.putExtra("C",mCityList.get(i).cN);
+                intent.putExtra("S",mCityList.get(i).cState);
+                intent.putExtra("Con",mCityList.get(i).cCountry);
+                intent.putExtra("T",address);
+                intent.putExtra("A",type);
+                intent.putExtra("ID",id);
+                contex.startActivity(intent);
+                 //contex.cityName(mCityList.get(i).cN,mCityList.get(i).cState,mCityList.get(i).cCountry,city);
             }
         });
     }
