@@ -358,6 +358,13 @@ public class VewProfileFragment extends Fragment {
             }
         });
 
+        ((ImageButton) mView.findViewById(R.id.bt_close)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
         dialog.show();
     }
 
